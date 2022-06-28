@@ -71,7 +71,7 @@ int main()
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            buffer = "wget -e  robots=off -r -l 1 -np -R .html,.tmp -nH --cut-dirs=4 " + url + " --header " + auth + " -P " + path;
+            buffer = "wget -e  robots=off -r -N -l 1 -np -R .html,.tmp -nH --cut-dirs=4 " + url + " --header " + auth + " -P " + path;
             system(buffer.c_str());
             //cout << buffer << endl;
         }
