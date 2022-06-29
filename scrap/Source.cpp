@@ -3,7 +3,7 @@
 
 int main()
 {
-    string archivio, index, url, path, buffer, token, auth, anno, DB;
+    string archivio, index, url, path, buffer, token, auth, DB, anno;
     int UrlNI = 0, UrlNF = 0, scelta = 0, SDB = 0;
     token = "cGVwcGU6WjJsMWMyVndjR1V1WVhWc2FXTnBibTlBZFc1cGNHRnlkR2hsYm05d1pTNXBkQT09OjE2NDk3NTQzMjU6MjdiZWMxYzM5YTIyNTcxMTk5ODFjZjRhMDFhNzg1Y2I4YjM0MzBhZA";
     path = "\\\\NAS29F79B\\";
@@ -35,7 +35,7 @@ int main()
     case 0: return 0;
     }
 
-     path = "C:\\Test";
+     path = "D:\\Test";
     auth = "\"Authorization: Bearer " + token + "\"";
 
     cout << "Hai inserito questi dati, sono corretti? " << endl
@@ -47,8 +47,7 @@ int main()
         << "Si (1) No(0)" << endl;
     cin >> scelta;
     if (scelta == 1) {
-
-        Download(UrlNI, UrlNF, index, DB, path, auth, anno);
+        Download(UrlNI, UrlNF,index, DB, path, auth, anno);
     }
     else {
         return 0;

@@ -1,9 +1,9 @@
 #include "Header.h"
 
-void Download(int UrlNI, int UrlNF, string index, string DB, string path, string auth, string anno) {
+void Download(int UrlNI, int UrlNF, string index, string DB, string path, string auth,string anno) {
     string url, buffer, fileName, hourIndex;
 
-    int i, j;
+    int i, j, annoi;
 
     for (i = UrlNI; i <= UrlNF; i++) {
         if (i > 0 && i <= 9) {
@@ -23,31 +23,52 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
         else
             exit;
 
-        for (j = MIN_HOUR; j <= MAX_HOUR; j++){
+        for (j = MIN_HOUR; j <= MAX_HOUR-1; j++){
 
          if (j > 0 && j < 10) {
             hourIndex = "0";
             hourIndex += to_string(j);
         }
 
-        else if (i >= 10 && i <= 15) {
-            hourIndex = "";
-            hourIndex += to_string(j);
-        }
+        else if (j >= 10 && j <= MAX_HOUR-1) {
+             hourIndex = "";
+             hourIndex += to_string(j);
+         
+        }  
         fileName = "\""+DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";
 
         url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=4 " + url + " --header " + auth + " -P " + path;
-        cout << "----------------------------------------------" << endl;
+        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
+        
+        
+    /*    cout << "----------------------------------------------" << endl;
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
-        system(buffer.c_str());
         
-        waitForInput();
+      */
+        
+        system(buffer.c_str()); 
+        //waitForInput();
         }
+        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";
+
+        url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
+        url += DB + "/";
+        url += anno;
+        url += "/" + index + "\"";
+        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
+
+        /*
+          cout << "----------------------------------------------" << endl;
+        cout << buffer << endl;
+        cout << "----------------------------------------------" << endl;
+        */
+
+
+        system(buffer.c_str());
        
 
 
@@ -60,41 +81,26 @@ void waitForInput() {
     getchar();
 };
 
-int FileTime(string FilePath)
-{
-    string buffer;
 
-    buffer = "dir /T:C " + FilePath;
-
-    system(buffer.c_str());
-
-    return 0;
-}
-
-int FileArray(string Fpath)
-{
-    string FpathC;
-    vector<string> fnames; //your filenames will be stored here
-
-    path p("C:\\TEST");   // C:\TEST
-    directory_iterator di(p);
-    directory_iterator di_end;
-
-    while (di != di_end)
-    {
-        FpathC = Fpath + di->path().filename().string();
-        FileTime(FpathC);
-        ++di;
+bool month::isLeapYear(string anno) {
+    if (stoi(anno) % 400 == 0) {
+        return true;
     }
+    else return false;  
 }
 
-int FileArrayRec(string Fpath)
-{
-    string FpathC;
-    path directory = "C:\\TEST";
-    for (path p : recursive_directory_iterator(directory))
-    {
-        FpathC = Fpath + path().filename().string();
-        FileTime(FpathC);
-    }
-}
+int month::getFirst() {
+    return this->first;
+};
+int month::getLast() {
+    return this->last;
+};
+int month::getFirstLeap() {
+    return this->firstLeap;
+};
+int month::getLastLeap() {
+    return this->lastLEap;
+};
+int month::getId() {
+    return this->id;
+};

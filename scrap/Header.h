@@ -4,22 +4,30 @@
 #include <string>
 #include <stdio.h>
 #include <sstream>
-#include <boost/filesystem.hpp>
-#include <vector>	
-#include <iterator>
-#include <algorithm>
 
 using namespace std;
-using namespace boost::filesystem;
 
+constexpr auto MIN_HOUR = 3, MAX_HOUR = 15;
 
-#define MIN_HOUR 3
-#define MAX_HOUR 15
+class month {
 
+private:
+	string name;
+	int id;
+	int first;
+	int firstLeap;
+	int lastLEap;
+	int last;
+
+public:
+	bool isLeapYear(string);
+	int getFirst();
+	int getLast();
+	int getFirstLeap();
+	int getLastLeap();
+	int getId();
+
+};
 
 void Download(int, int, string, string, string, string, string);
-
 void waitForInput();
-int FileTime(string);
-int FileArray(string);
-int FileArrayRec(string);
