@@ -13,21 +13,31 @@ class month {
 
 private:
 	string name;
-	int id;
 	int first;
 	int firstLeap;
 	int lastLEap;
 	int last;
 
 public:
-	bool isLeapYear(string);
+
+static	bool isLeapYear(string);
+
+	void setName(string);
+	void setFirst(int);
+	void setLast(int);
+	void setFirstLeap(int);
+	void setLastLeap(int);
+
+	string getName();
 	int getFirst();
 	int getLast();
 	int getFirstLeap();
 	int getLastLeap();
-	int getId();
-
 };
 
+void monthInitializer(month*);
+
 void Download(int, int, string, string, string, string, string);
+void DownloadM(int, int, string, string, string, string, string, int, month*);
 void waitForInput();
+
