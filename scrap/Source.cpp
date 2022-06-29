@@ -17,10 +17,10 @@ int main()
     cout << "selezionare un giorno finale:" << endl;
     cin >> UrlNF;
 
-   /*cout << "scegliere un archivio:" << endl;
+   cout << "scegliere un archivio:" << endl;
     fflush(stdin);
     cin >> archivio;
-    path.append(archivio); */ 
+    path.append(archivio);  
 
     cout << "Scegliere un database tra: " << endl
         << "MYD03 (1)" << endl
@@ -35,7 +35,7 @@ int main()
     case 0: return 0;
     }
 
-     path = "D:\\Test";
+    // path = "D:\\Test";
     auth = "\"Authorization: Bearer " + token + "\"";
 
     cout << "Hai inserito questi dati, sono corretti? " << endl
