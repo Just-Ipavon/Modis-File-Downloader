@@ -121,8 +121,8 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "\\\" " +" mkdir " + path + "\\" + mesi[mese - 1].getName() + "\\";
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName();
+            mkdir = "if not exist \"" + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB + "\\\" " + " mkdir " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB + "\\";
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=5 " + url + " --header " + auth + " -P " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB;
 
 
             cout << "----------------------------------------------" << endl;
@@ -141,10 +141,84 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName();
+        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=5 " + url + " --header " + auth + " -P " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB;
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
         
+
+        system(buffer.c_str());
+
+
+
+    }
+
+}
+
+void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, string auth, string anno, month* mesi) {
+    string url, buffer, fileName, hourIndex, mkdir;
+
+    int i, j, annoi, mese;
+
+    for (i = UrlNI; i <= UrlNF; i++) {
+        if (i > 0 && i <= 9) {
+            index = "00";
+            index += to_string(i);
+        }
+
+        else if (i >= 10 && i <= 99) {
+            index = "0";
+            index += to_string(i);
+        }
+
+        else if (i >= 100 && i <= 365) {
+            index = "";
+            index += to_string(i);
+        }
+        else
+            exit;
+        mese = whatMonth(anno, i, mesi);
+        for (j = MIN_HOUR; j <= MAX_HOUR - 1; j++) {
+
+            if (j > 0 && j < 10) {
+                hourIndex = "0";
+                hourIndex += to_string(j);
+            }
+
+            else if (j >= 10 && j <= MAX_HOUR - 1) {
+                hourIndex = "";
+                hourIndex += to_string(j);
+
+            }
+            fileName = "\"" + DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";
+
+            url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
+            url += DB + "/";
+            url += anno;
+            url += "/" + index + "\"";
+            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno +  "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+
+
+            cout << "----------------------------------------------" << endl;
+            cout << mkdir << endl;
+            cout << buffer << endl;
+            cout << "----------------------------------------------" << endl;
+
+
+            system(mkdir.c_str());
+            system(buffer.c_str());
+            //waitForInput();
+        }
+        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";
+
+        url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
+        url += DB + "/";
+        url += anno;
+        url += "/" + index + "\"";
+        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+        cout << buffer << endl;
+        cout << "----------------------------------------------" << endl;
+
 
         system(buffer.c_str());
 
@@ -185,7 +259,6 @@ void month::setLastLeap(int lastleap) {
 string month::getName() {
     return this->name;
 };
-
 int month::getFirst() {
     return this->first;
 };
@@ -198,6 +271,28 @@ int month::getFirstLeap() {
 int month::getLastLeap() {
     return this->lastLEap;
 };
+
+int whatMonth(string anno, int day, month* mesi) {
+    if (month::isLeapYear(anno)) {
+        for (int i = 0; i <= sizeof(mesi); i++) {
+            if (day <= mesi[i].getLastLeap() && day >= mesi[i].getFirstLeap()) {
+                cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
+                return i;
+            }
+        }
+    }
+    else {
+        for (int i = 0; i <= 11; i++) {
+            cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
+            if (day >= mesi[i].getFirst() && day <= mesi[i].getLast()) {
+                cout << "||||||||||||||||||||||||||||||<<<<<<<<<<<<<<<<<<<<<<<<<<<" << mesi[i].getLast() << endl;
+                cout << "||||||||||||||||||||||||||||||<<<<<<<<<<<<<<" << mesi[i].getFirst() << endl;
+                cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
+                return i+1;
+            }
+        }
+    } 
+}
 
 void monthInitializer(month* mesi) {
 

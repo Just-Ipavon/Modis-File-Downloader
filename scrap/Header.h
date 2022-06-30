@@ -33,11 +33,13 @@ static	bool isLeapYear(string);
 	int getLast();
 	int getFirstLeap();
 	int getLastLeap();
+	
 };
 
 void monthInitializer(month*);
-
+int whatMonth(string , int , month* );
 void Download(int, int, string, string, string, string, string);
 void DownloadM(int, int, string, string, string, string, string, int, month*);
+void DownloadGM(int, int, string, string, string, string, string, month*);
 void waitForInput();
 
