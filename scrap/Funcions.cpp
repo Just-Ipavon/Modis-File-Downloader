@@ -81,7 +81,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
 }
 
 void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, string auth, string anno, int mese, month* mesi) {
-    string url, buffer, fileName, hourIndex;
+    string url, buffer, fileName, hourIndex, mkdir;
 
     int i, j, annoi;
 
@@ -121,15 +121,17 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            buffer = "wget -e  robots=off -r -N -l 1 -np --directory-prefix=/" + mesi[mese - 1].getName() + "/" + " -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
+            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "\\\" " +" mkdir " + path + "\\" + mesi[mese - 1].getName() + "\\";
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName();
 
 
             cout << "----------------------------------------------" << endl;
+            cout << mkdir << endl;
             cout << buffer << endl;
             cout << "----------------------------------------------" << endl;
 
               
-
+            system(mkdir.c_str());
             system(buffer.c_str());
             //waitForInput();
         }
@@ -139,10 +141,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e  robots=off -r -N -l 1 -np --directory-prefix=/" + mesi[mese - 1].getName() + "/" + " -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
-
-        
-        cout << "----------------------------------------------" << endl;
+        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName();
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
         
@@ -172,7 +171,7 @@ void month::setName(string Name) {
     this->name = Name;
 };
 void month::setFirst(int First) {
-    this->first = first;
+    this->first = First;
 };
 void month::setLast(int Last) {
     this->last = Last;

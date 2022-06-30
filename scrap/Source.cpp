@@ -33,8 +33,7 @@ int main()
 
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
-        cin >> archivio;
-        path = "\\\\NAS29F79B\\" + archivio + "\\" + mesi[mese-1].getName();
+        //path = "\\\\NAS29F79B\\" + archivio;
 
         cout << "Scegliere un database tra: " << endl
             << "MYD03 (1)" << endl
@@ -49,7 +48,7 @@ int main()
         case 0: return 0;
         }
 
-        // path = "D:\\Test";
+        path = "C:\\TEST";
         auth = "\"Authorization: Bearer " + token + "\"";
 
         cout << "Hai inserito questi dati, sono corretti? " << endl
@@ -81,7 +80,7 @@ int main()
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
         cin >> archivio;
-        path.append(archivio);
+        path += archivio;
 
         cout << "Scegliere un database tra: " << endl
             << "MYD03 (1)" << endl
