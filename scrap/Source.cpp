@@ -129,6 +129,7 @@ int main()
 
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
+        cin >> archivio;
         path = "\\\\NAS29F79B\\" + archivio + "\\Modis";
 
         cout << "Scegliere un database tra: " << endl
@@ -144,7 +145,7 @@ int main()
         case 0: return 0;
         }
 
-        path = "C:\\TEST";
+        //path = "C:\\TEST";
         auth = "\"Authorization: Bearer " + token + "\"";
 
         cout << "Hai inserito questi dati, sono corretti? " << endl
