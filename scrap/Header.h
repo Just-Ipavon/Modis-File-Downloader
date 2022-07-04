@@ -7,7 +7,7 @@
 
 using namespace std;
 
-constexpr auto MIN_HOUR = 3, MAX_HOUR = 15;
+constexpr auto MIN_HOUR = 3, MAX_HOUR = 15, MONTH = 11;
 
 class month {
 

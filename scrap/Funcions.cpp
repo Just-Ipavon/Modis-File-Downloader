@@ -233,6 +233,22 @@ void waitForInput() {
     getchar();
 };
 
+int whatMonth(string anno, int day, month* mesi) {
+    if (month::isLeapYear(anno)) {
+        for (int i = 0; i <= sizeof(mesi); i++) {
+            if (day <= mesi[i].getLastLeap() && day >= mesi[i].getFirstLeap()) {
+                return i + 1;
+            }
+        }
+    }
+    else {
+        for (int i = 0; i <= MONTH; i++) {
+            if (day >= mesi[i].getFirst() && day <= mesi[i].getLast()) {
+                return i + 1;
+            }
+        }
+    }
+}
 
 bool month::isLeapYear(string anno) {
     if (stoi(anno) % 400 == 0) {
@@ -256,6 +272,7 @@ void month::setFirstLeap(int firstleap) {
 void month::setLastLeap(int lastleap) {
     this->lastLEap = lastleap;
 };
+
 string month::getName() {
     return this->name;
 };
@@ -271,28 +288,6 @@ int month::getFirstLeap() {
 int month::getLastLeap() {
     return this->lastLEap;
 };
-
-int whatMonth(string anno, int day, month* mesi) {
-    if (month::isLeapYear(anno)) {
-        for (int i = 0; i <= sizeof(mesi); i++) {
-            if (day <= mesi[i].getLastLeap() && day >= mesi[i].getFirstLeap()) {
-                cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
-                return i;
-            }
-        }
-    }
-    else {
-        for (int i = 0; i <= 11; i++) {
-           // cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
-            if (day >= mesi[i].getFirst() && day <= mesi[i].getLast()) {
-              // cout << "||||||||||||||||||||||||||||||<<<<<<<<<<<<<<<<<<<<<<<<<<<" << mesi[i].getLast() << endl;
-               // cout << "||||||||||||||||||||||||||||||<<<<<<<<<<<<<<" << mesi[i].getFirst() << endl;
-               // cout << "||||||||||||||||||||||||||||||>>>>>>>>>>>>>>>>>>>>>>>" << i << endl;
-                return i+1;
-            }
-        }
-    } 
-}
 
 void monthInitializer(month* mesi) {
 
