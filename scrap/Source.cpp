@@ -11,8 +11,6 @@ int main()
     monthInitializer(mesi);
 
     token = "cGVwcGU6WjJsMWMyVndjR1V1WVhWc2FXTnBibTlBZFc1cGNHRnlkR2hsYm05d1pTNXBkQT09OjE2NDk3NTQzMjU6MjdiZWMxYzM5YTIyNTcxMTk5ODFjZjRhMDFhNzg1Y2I4YjM0MzBhZA";
-    path = "\\\\NAS29F79B\\";
-
 
     cout << "scegliere una modalita' di download:" << endl
         << "Download singoli mesi (1)" << endl

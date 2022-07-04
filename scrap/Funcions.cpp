@@ -121,8 +121,8 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            mkdir = "if not exist \"" + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB + "\\\" " + " mkdir " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB + "\\";
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=5 " + url + " --header " + auth + " -P " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB;
+            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
 
 
             cout << "----------------------------------------------" << endl;
@@ -141,7 +141,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=5 " + url + " --header " + auth + " -P " + path + "\\" + anno + "\\" + mesi[mese - 1].getName() + "\\" + DB;
+        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
         
