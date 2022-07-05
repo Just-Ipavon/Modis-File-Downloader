@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-    string archivio, index, url, path, buffer, token, auth, DB, anno;
+    string archivio, index, url, path, buffer, token, auth, DB, anno, nas;
     month mesi[12];
-    int UrlNI = 0, UrlNF = 0, scelta = 0, SDB = 0, SM = 0, mese = 0;
+    int UrlNI = 0, UrlNF = 0, scelta = 0, SDB = 0, SM = 0, mese = 0, SNAS;
     monthInitializer(mesi);
 
     token = "cGVwcGU6WjJsMWMyVndjR1V1WVhWc2FXTnBibTlBZFc1cGNHRnlkR2hsYm05d1pTNXBkQT09OjE2NDk3NTQzMjU6MjdiZWMxYzM5YTIyNTcxMTk5ODFjZjRhMDFhNzg1Y2I4YjM0MzBhZA";
@@ -29,10 +29,21 @@ int main()
         UrlNI = mesi[mese-1].getFirst();
         UrlNF = mesi[mese-1].getLast();
 
+        cout << "Scegliere un nas tra: " << endl
+            << "NAS29F79B (1)" << endl
+            << "NASFA8369 (2)" << endl
+            << "exit (0): " << endl;
+        cin >> SNAS;
+        switch (SNAS) {
+        case 1: nas = "NAS29F79B"; break;
+        case 2: nas = "NASFA8369"; break;
+        case 0: return 0;
+        }
+
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
         cin >> archivio;
-        path = "\\\\NAS29F79B\\" + archivio + "\\Modis";
+        path = "\\\\"+nas+"\\" + archivio + "\\Modis";
 
         cout << "Scegliere un database tra: " << endl
             << "MYD03 (1)" << endl
@@ -49,7 +60,7 @@ int main()
 
        // path = "C:\\TEST";
         auth = "\"Authorization: Bearer " + token + "\"";
-
+        system("cls");
         cout << "Hai inserito questi dati, sono corretti? " << endl
             << "Anno: " << anno << endl
             << "Mese: " << mesi[mese-1].getName() << endl
@@ -76,10 +87,21 @@ int main()
         cout << "selezionare un giorno finale:" << endl;
         cin >> UrlNF;
 
+        cout << "Scegliere un nas tra: " << endl
+            << "NAS29F79B (1)" << endl
+            << "NASFA8369 (2)" << endl
+            << "exit (0): " << endl;
+        cin >> SNAS;
+        switch (SNAS) {
+        case 1: nas = "NAS29F79B"; break;
+        case 2: nas = "NASFA8369"; break;
+        case 0: return 0;
+        }
+
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
         cin >> archivio;
-        path = "\\\\NAS29F79B\\" + archivio + "\\Modis";
+        path = "\\\\" + nas + "\\" + archivio + "\\Modis";
 
         cout << "Scegliere un database tra: " << endl
             << "MYD03 (1)" << endl
@@ -93,8 +115,6 @@ int main()
         case 3: DB = "MYD35_L2"; break;
         case 0: return 0;
         }
-
-        // path = "D:\\Test";
         auth = "\"Authorization: Bearer " + token + "\"";
 
         cout << "Hai inserito questi dati, sono corretti? " << endl
@@ -103,6 +123,7 @@ int main()
             << "Numero Iniziale: " << UrlNI << endl
             << "Numero Finale: " << UrlNF << endl
             << "Database: " << DB << endl
+            << "Nas: " << nas << endl
             << "Si (1) No(0)" << endl;
         cin >> scelta;
         if (scelta == 1) {
@@ -124,10 +145,22 @@ int main()
         cout << "selezionare un giorno finale:" << endl;
         cin >> UrlNF;
 
+
+        cout << "Scegliere un nas tra: " << endl
+            << "NAS29F79B (1)" << endl
+            << "NASFA8369 (2)" << endl
+            << "exit (0): " << endl;
+        cin >> SNAS;
+        switch (SNAS) {
+        case 1: nas = "NAS29F79B"; break;
+        case 2: nas = "NASFA8369"; break;
+        case 0: return 0;
+        }
+
         cout << "scegliere un archivio:" << endl;
         fflush(stdin);
         cin >> archivio;
-        path = "\\\\NAS29F79B\\" + archivio + "\\Modis";
+        path = "\\\\" + nas + "\\" + archivio + "\\Modis";
 
         cout << "Scegliere un database tra: " << endl
             << "MYD03 (1)" << endl
