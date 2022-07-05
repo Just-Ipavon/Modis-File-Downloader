@@ -13,10 +13,9 @@ int main()
     token = "cGVwcGU6WjJsMWMyVndjR1V1WVhWc2FXTnBibTlBZFc1cGNHRnlkR2hsYm05d1pTNXBkQT09OjE2NDk3NTQzMjU6MjdiZWMxYzM5YTIyNTcxMTk5ODFjZjRhMDFhNzg1Y2I4YjM0MzBhZA";
 
     cout << "scegliere una modalita' di download:" << endl
-        << "Download singoli mesi (1)" << endl
-        << "Download Giorni (2)" << endl
-        << "Download Giorni con differenza di mese (3)" << endl
-        //TODO: << "Download lista di mesi (4)" << endl
+        << "Download singoli mesi (1)" << endl  // scarica i dati inserendo in input un mese da scaricare
+        << "Download Giorni (2)" << endl       // scarica i dati generando cartelle per ogni giorno dell'anno selezionato
+        << "Download Giorni con differenza di mese (3)" << endl // scarica i dati inserendo in input un range di giorni generando cartelle per ogni mese 
         << "exit (0): " << endl;
     cin >> SM;
     switch (SM) {

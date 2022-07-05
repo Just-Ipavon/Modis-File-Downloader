@@ -9,7 +9,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
 
     int i, j, annoi;
 
-    for (i = UrlNI; i <= UrlNF; i++) {
+    for (i = UrlNI; i <= UrlNF; i++) { // cambia il valore dell'indice rendendolo conforme all'url da generare 
         if (i > 0 && i <= 9) {
             index = "00";
             index += to_string(i);
@@ -27,7 +27,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
         else
             exit;
 
-        for (j = MIN_HOUR; j <= MAX_HOUR-1; j++){
+        for (j = MIN_HOUR; j <= MAX_HOUR-1; j++){ // filtra le ore da scaricare con un intervallo modificabile nel file header
 
          if (j > 0 && j < 10) {
             hourIndex = "0";
@@ -39,13 +39,13 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
              hourIndex += to_string(j);
          
         }  
-        fileName = "\""+DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";
+        fileName = "\""+DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";  //genera il nome del file con l'ora scelta
 
         url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
+        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path; //genera il comando per scaricare il file
         
         
     /*    cout << "----------------------------------------------" << endl;
@@ -57,7 +57,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
         system(buffer.c_str()); 
         //waitForInput();
         }
-        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";
+        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\""; //crea il nome dell'ultimo file da scaricare che corrisponde al primo file dell'ultima ora
 
         url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
         url += DB + "/";
@@ -85,7 +85,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
 
     int i, j, annoi;
 
-    for (i = UrlNI; i <= UrlNF; i++) {
+    for (i = UrlNI; i <= UrlNF; i++) { // cambia il valore dell'indice rendendolo conforme all'url da generare 
         if (i > 0 && i <= 9) {
             index = "00";
             index += to_string(i);
@@ -103,7 +103,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
         else
             exit;
 
-        for (j = MIN_HOUR; j <= MAX_HOUR - 1; j++) {
+        for (j = MIN_HOUR; j <= MAX_HOUR - 1; j++) { // filtra le ore da scaricare con un intervallo modificabile nel file header
 
             if (j > 0 && j < 10) {
                 hourIndex = "0";
@@ -115,27 +115,30 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
                 hourIndex += to_string(j);
 
             }
-            fileName = "\"" + DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";
+            fileName = "\"" + DB + ".A" + anno + index + "." + hourIndex + "*" + "\""; //genera il nome del file con l'ora scelta
 
             url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per creare la directory richiesta
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per scaricare il file
+        
 
-
+            /*
             cout << "----------------------------------------------" << endl;
             cout << mkdir << endl;
             cout << buffer << endl;
             cout << "----------------------------------------------" << endl;
 
+            */
+            
               
             system(mkdir.c_str());
             system(buffer.c_str());
             //waitForInput();
         }
-        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";
+        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\""; //crea il nome dell'ultimo file da scaricare che corrisponde al primo file dell'ultima ora
 
         url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
         url += DB + "/";
@@ -159,7 +162,7 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
 
     int i, j, annoi, mese;
 
-    for (i = UrlNI; i <= UrlNF; i++) {
+    for (i = UrlNI; i <= UrlNF; i++) { // cambia il valore dell'indice rendendolo conforme all'url da generare 
         if (i > 0 && i <= 9) {
             index = "00";
             index += to_string(i);
@@ -177,7 +180,7 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
         else
             exit;
         mese = whatMonth(anno, i, mesi);
-        for (j = MIN_HOUR; j <= MAX_HOUR - 1; j++) {
+        for (j = MIN_HOUR; j <= MAX_HOUR - 1; j++) { // filtra le ore da scaricare con un intervallo modificabile nel file header
 
             if (j > 0 && j < 10) {
                 hourIndex = "0";
@@ -189,27 +192,27 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
                 hourIndex += to_string(j);
 
             }
-            fileName = "\"" + DB + ".A" + anno + index + "." + hourIndex + "*" + "\"";
+            fileName = "\"" + DB + ".A" + anno + index + "." + hourIndex + "*" + "\""; //genera il nome del file con l'ora scelta
 
             url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
             url += DB + "/";
             url += anno;
             url += "/" + index + "\"";
-            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno +  "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+            mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno +  "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per creare la directory richiesta
+            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";  //genera il comando per scaricare il file
 
-
+            /*
             cout << "----------------------------------------------" << endl;
             cout << mkdir << endl;
             cout << buffer << endl;
             cout << "----------------------------------------------" << endl;
-
+            */
 
             system(mkdir.c_str());
             system(buffer.c_str());
             //waitForInput();
         }
-        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";
+        fileName = "\"" + DB + ".A" + anno + index + "." + to_string(MAX_HOUR) + "00*" + "\"";  //crea il nome dell'ultimo file da scaricare che corrisponde al primo file dell'ultima ora
 
         url = "\"https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/";
         url += DB + "/";
@@ -219,10 +222,7 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
 
-
         system(buffer.c_str());
-
-
 
     }
 
@@ -233,7 +233,7 @@ void waitForInput() {
     getchar();
 };
 
-int whatMonth(string anno, int day, month* mesi) {
+int whatMonth(string anno, int day, month* mesi) { //prendendo in input anno, l'array di mesi e il giorno restituisce il mese del giorno scelto
     if (month::isLeapYear(anno)) {
         for (int i = 0; i <= sizeof(mesi); i++) {
             if (day <= mesi[i].getLastLeap() && day >= mesi[i].getFirstLeap()) {
@@ -250,7 +250,7 @@ int whatMonth(string anno, int day, month* mesi) {
     }
 }
 
-bool month::isLeapYear(string anno) {
+bool month::isLeapYear(string anno) { //controlla se l'anno scelto è bisestile
     if (stoi(anno) % 400 == 0) {
         return true;
     }
