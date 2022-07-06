@@ -250,7 +250,7 @@ int whatMonth(string anno, int day, month* mesi) { //prendendo in input anno, l'
     }
 }
 
-bool month::isLeapYear(string anno) { //controlla se l'anno scelto è bisestile
+bool month::isLeapYear(string anno) { //controlla se l'anno scelto ï¿½ bisestile
     if (stoi(anno) % 400 == 0) {
         return true;
     }
@@ -326,9 +326,9 @@ void monthInitializer(month* mesi) {
 
 
     mesi[5].setName("Giugno");
-    mesi[5].setFirst(151);
+    mesi[5].setFirst(152);
     mesi[5].setLast(181);
-    mesi[5].setFirstLeap(152);
+    mesi[5].setFirstLeap(153);
     mesi[5].setLastLeap(182);
 
 
