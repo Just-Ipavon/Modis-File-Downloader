@@ -206,7 +206,9 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
             cout << mkdir << endl;
             cout << buffer << endl;
             cout << "----------------------------------------------" << endl;
+            
             */
+            
 
             system(mkdir.c_str());
             system(buffer.c_str());
@@ -250,8 +252,8 @@ int whatMonth(string anno, int day, month* mesi) { //prendendo in input anno, l'
     }
 }
 
-bool month::isLeapYear(string anno) { //controlla se l'anno scelto è bisestile
-    if (stoi(anno) % 400 == 0) {
+bool month::isLeapYear(string anno) { //controlla se l'anno scelto ï¿½ bisestile
+    if (stoi(anno) % 4 == 0 && stoi(anno) % 100 != 0) {
         return true;
     }
     else return false;  
@@ -326,9 +328,9 @@ void monthInitializer(month* mesi) {
 
 
     mesi[5].setName("Giugno");
-    mesi[5].setFirst(151);
+    mesi[5].setFirst(152);
     mesi[5].setLast(181);
-    mesi[5].setFirstLeap(152);
+    mesi[5].setFirstLeap(153);
     mesi[5].setLastLeap(182);
 
 
