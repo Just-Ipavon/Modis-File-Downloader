@@ -26,8 +26,16 @@ int main()
         cout << "scegliere un mese(1-12):" << endl;
         cin >> mese;
 
-        UrlNI = mesi[mese-1].getFirst();
-        UrlNF = mesi[mese-1].getLast();
+        if (stoi(anno) % 4 == 0 && stoi(anno) % 100 != 0) {
+            UrlNI = mesi[mese - 1].getFirstLeap();
+            UrlNF = mesi[mese - 1].getLastLeap();
+        }
+        else {
+            UrlNI = mesi[mese - 1].getFirst();
+            UrlNF = mesi[mese - 1].getLast();
+        };
+
+        
 
         cout << "Scegliere un nas tra: " << endl
             << "NAS29F79B (1)" << endl
