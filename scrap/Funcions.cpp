@@ -45,7 +45,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path; //genera il comando per scaricare il file
+        buffer = "wget -e  robots=off -r --tries=0 -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path; //genera il comando per scaricare il file
         
         
     /*    cout << "----------------------------------------------" << endl;
@@ -63,7 +63,7 @@ void Download(int UrlNI, int UrlNF, string index, string DB, string path, string
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e  robots=off -r -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
+        buffer = "wget -e  robots=off -r --tries=0 -N -l 1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=3 " + url + " --header " + auth + " -P " + path;
 
         /*
           cout << "----------------------------------------------" << endl;
@@ -122,7 +122,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
             url += anno;
             url += "/" + index + "\"";
             mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per creare la directory richiesta
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per scaricare il file
+            buffer = "wget -e robots=off -r --tries=0 -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per scaricare il file
         
 
             /*
@@ -144,7 +144,7 @@ void DownloadM(int UrlNI, int UrlNF, string index, string DB, string path, strin
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+        buffer = "wget -e robots=off -r --tries=0 -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
         
@@ -199,7 +199,7 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
             url += anno;
             url += "/" + index + "\"";
             mkdir = "if not exist \"" + path + "\\" + mesi[mese - 1].getName() + "_" + anno +  "\\\" " + " mkdir " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\"; //genera il comando per creare la directory richiesta
-            buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";  //genera il comando per scaricare il file
+            buffer = "wget -e robots=off -r --tries=0 -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";  //genera il comando per scaricare il file
 
             /*
             cout << "----------------------------------------------" << endl;
@@ -220,7 +220,7 @@ void DownloadGM(int UrlNI, int UrlNF, string index, string DB, string path, stri
         url += DB + "/";
         url += anno;
         url += "/" + index + "\"";
-        buffer = "wget -e robots=off -r -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
+        buffer = "wget -e robots=off -r --tries=0 -N -l1 -np -A " + fileName + " -R .html,.tmp -nH --cut-dirs=6 " + url + " --header " + auth + " -P " + path + "\\" + mesi[mese - 1].getName() + "_" + anno + "\\";
         cout << buffer << endl;
         cout << "----------------------------------------------" << endl;
 
